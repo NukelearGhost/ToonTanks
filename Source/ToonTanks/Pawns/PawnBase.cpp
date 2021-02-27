@@ -22,20 +22,24 @@ APawnBase::APawnBase()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
-// Called when the game starts or when spawned
-void APawnBase::BeginPlay()
+void APawnBase::RotateTurretFunction(FVector LookAtTarget) 
 {
-	Super::BeginPlay();
+	// Update TurretMesh to face toward LookAtTarget
 }
 
-// Called every frame
-void APawnBase::Tick(float DeltaTime)
+void APawnBase::Fire() 
 {
-	Super::Tick(DeltaTime);
+	// Get ProjectileSpawnPoing Location and Rotation -> Spawn Projectile class at location firing toward Rotation.
 }
 
-// Called to bind functionality to input
-void APawnBase::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
+void APawnBase::HandleDestruction() 
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	// --- Universal Functionality
+	// Play death effect 
+
+	// --- Then do Child overrides
+	// -- PawnTurret - Inform GameMode that Turret died -> Then Destroy() self.
+
+	// -- PawnTank - Inform GameMode Player died -> Then Hide() all components and stop movement input.
 }
+
