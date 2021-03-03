@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+#include "PawnTank.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Engine/World.h"
 #include "Camera/CameraComponent.h"
-#include "PawnTank.h"
+
 
 APawnTank::APawnTank()
 {
@@ -25,6 +26,10 @@ void APawnTank::HandleDestruction()
 {
     Super::HandleDestruction();
     //Hide Player (Create function for this)
+    bIsPlayerAlive = false;
+
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
 }
 
 // Called every frame
@@ -51,6 +56,11 @@ void APawnTank::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAxis("MoveForward", this, &APawnTank::CalculateMoveInput);
     PlayerInputComponent->BindAxis("Turn", this, &APawnTank::CalculateRotateInput);
     PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &APawnTank::Fire);
+}
+
+bool APawnTank::GetIsPlayerAlive()
+{
+    return bIsPlayerAlive;
 }
 
 void APawnTank::CalculateMoveInput(float Value)

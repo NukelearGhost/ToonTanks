@@ -14,7 +14,7 @@ void APawnTurret::BeginPlay()
     PlayerPawn = Cast<APawnTank>(UGameplayStatics::GetPlayerPawn(this, 0));
 }
 
-void APawnTurret::HandleDestruction() 
+void APawnTurret::HandleDestruction()
 {
     Super::HandleDestruction();
     Destroy();
@@ -35,7 +35,7 @@ void APawnTurret::Tick(float DeltaTime)
 void APawnTurret::CheckFireCondition()
 {
     // If Player == null || is Dead THEN BAIL
-    if (!PlayerPawn)
+    if (!PlayerPawn || !PlayerPawn->GetIsPlayerAlive())
     {
         return;
     }
